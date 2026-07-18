@@ -7,7 +7,7 @@
     <title>POS Receipt Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -154,6 +154,7 @@
 
             <div class="print-btn-wrap">
                 <button type="button" class="btn btn-primary btn-block" id="printBtn">Print / Save as PDF</button>
+                <button type="button" class="btn btn-block" id="downloadImageBtn">Download as Image (PNG)</button>
             </div>
         </div>
 
@@ -163,6 +164,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="app.js"></script>
 </body>
 

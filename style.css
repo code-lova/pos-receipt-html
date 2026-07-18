@@ -181,6 +181,10 @@ button {
     bottom: 0;
 }
 
+.print-btn-wrap .btn + .btn {
+    margin-top: 8px;
+}
+
 .preview-panel {
     flex: 0 0 360px;
     position: sticky;
@@ -344,6 +348,10 @@ button {
     font-size: 10px;
     letter-spacing: 3px;
     margin-top: 2px;
+}
+
+.receipt-paper .currency-symbol {
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 .receipt-paper .thankyou {

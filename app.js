@@ -7,6 +7,7 @@
     const itemsBody = $('itemsBody');
     const addItemBtn = $('addItemBtn');
     const printBtn = $('printBtn');
+    const downloadImageBtn = $('downloadImageBtn');
     const storeLogoInput = $('storeLogo');
     const receiptPaper = $('receiptPaper');
 
@@ -286,7 +287,7 @@
         const sums = { subtotal, vat, total, change };
 
         const symbol = CURRENCY_SYMBOLS[f.currency] || '';
-        const money = (n) => `${symbol}${formatMoney(n)}`;
+        const money = (n) => `<span class="currency-symbol">${symbol}</span>${formatMoney(n)}`;
 
         receiptPaper.className = `receipt-paper template-${f.template}`;
         receiptPaper.innerHTML = f.template === 'compact'
@@ -318,6 +319,34 @@
             document.head.appendChild(styleTag);
         }
         styleTag.textContent = `@media print { @page { size: ${PRINT_WIDTH_IN}in ${heightIn.toFixed(2)}in; margin: 0; } }`;
+    }
+
+    async function downloadAsImage() {
+        if (typeof html2canvas === 'undefined') {
+            alert('Image export needs an internet connection to load a required library. Please check your connection and try again.');
+            return;
+        }
+
+        const clone = receiptPaper.cloneNode(true);
+        clone.removeAttribute('id');
+        clone.style.position = 'fixed';
+        clone.style.left = '-9999px';
+        clone.style.top = '0';
+        clone.style.maxWidth = 'none';
+        clone.style.width = '340px';
+        clone.style.boxShadow = 'none';
+        document.body.appendChild(clone);
+
+        try {
+            const canvas = await html2canvas(clone, { backgroundColor: '#ffffff', scale: 2 });
+            const billNo = $('metaBill').value.trim() || 'receipt';
+            const link = document.createElement('a');
+            link.download = `receipt-${billNo}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        } finally {
+            document.body.removeChild(clone);
+        }
     }
 
     function init() {
@@ -361,6 +390,8 @@
             setDynamicPageSize();
             window.print();
         });
+
+        downloadImageBtn.addEventListener('click', downloadAsImage);
 
         renderPreview();
     }

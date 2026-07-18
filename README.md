@@ -12,7 +12,7 @@ roll.
 - `app.js` — form state, item add/remove, live calculations, template/currency switching, print handling
 - `receipt.html` — a static, non-interactive example of the classic receipt format (hand-edited, kept for reference)
 
-No build step, no package dependencies — everything runs from plain HTML/CSS/JS in the browser. The **Compact (Dot Matrix)** template loads the "Doto" typeface from Google Fonts over the network for its pixel-grid look; every other part of the app works fully offline, and the Classic template always uses a local system monospace font.
+No build step, no package manager — everything runs from plain HTML/CSS/JS in the browser, pulling in two things over the network: the "Doto" and "Noto Sans" typefaces from Google Fonts, and the [html2canvas](https://html2canvas.hertzen.com/) library (via CDN) for the "Download as Image" button. Both need an internet connection the first time they load; nothing about the app's own logic is server-side, and no receipt data is ever sent anywhere.
 
 ## Usage
 
@@ -26,6 +26,7 @@ open index.html
 4. Set a VAT % (defaults to 0 — set it to 7.5 for standard Nigerian VAT, or whatever applies to your business).
 5. Enter the amount tendered — Subtotal, VAT, Total, and Change (or Balance Due, if tendered is less than the total) are calculated live as you type.
 6. Click **Print / Save as PDF**. Only the receipt itself is printed (the form is hidden), sized exactly to the receipt's own width and height (3.15in / 80mm wide, standard thermal paper) — no extra blank page or margins.
+7. Click **Download as Image (PNG)** for a phone-friendly export — useful on mobile, where "Print" often isn't available or convenient.
 
 ## Customizing further
 
@@ -43,3 +44,10 @@ open index.html
 - The barcode above the thank-you message is a generated decorative pattern
   (seeded from the bill number and date so it stays stable while you edit
   items), not a real scannable barcode encoding.
+- Currency symbols are rendered in the "Noto Sans" web font rather than each
+  template's display font. This is deliberate: many system/monospace fonts
+  (especially on mobile) don't include a glyph for the Naira sign (₦), so it
+  can render as blank/missing even though `$` works fine. Wrapping the
+  symbol in `.currency-symbol` (see `style.css`) forces it through a font
+  with full Unicode currency-symbol coverage so it displays consistently
+  across devices.
