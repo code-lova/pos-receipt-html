@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POS Receipt Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+        <div class="form-panel" id="formPanel">
+            <h1 class="app-title">POS Receipt Generator</h1>
+
+            <fieldset>
+                <legend>Receipt Settings</legend>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="template">Template</label>
+                        <select id="template">
+                            <option value="classic">Classic</option>
+                            <option value="compact">Compact (Dot Matrix)</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="currency">Currency</label>
+                        <select id="currency">
+                            <option value="NGN">₦ Naira</option>
+                            <option value="USD">$ US Dollar</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Store Details</legend>
+                <div class="field">
+                    <label for="storeName">Store name</label>
+                    <input type="text" id="storeName" value="Mama Uyiosa Stores">
+                </div>
+                <div class="field">
+                    <label for="storeAddress1">Address line 1</label>
+                    <input type="text" id="storeAddress1" value="Uselu Market Benin City">
+                </div>
+                <div class="field">
+                    <label for="storeAddress2">Address line 2</label>
+                    <input type="text" id="storeAddress2" value="Edo State, Nigeria">
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="storePhone">Phone</label>
+                        <input type="text" id="storePhone" value="08025904418">
+                    </div>
+                    <div class="field">
+                        <label for="storeTin">TIN</label>
+                        <input type="text" id="storeTin" value="2109384756-0001">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="storeLogo">Logo (optional)</label>
+                    <input type="file" id="storeLogo" accept="image/*">
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Transaction Details</legend>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="metaDate">Date</label>
+                        <input type="date" id="metaDate">
+                    </div>
+                    <div class="field">
+                        <label for="metaTime">Time</label>
+                        <input type="time" id="metaTime">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="metaTable">Table #</label>
+                        <input type="text" id="metaTable" value="3">
+                    </div>
+                    <div class="field">
+                        <label for="metaBill">Bill #</label>
+                        <input type="text" id="metaBill" value="4">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="metaPayment">Payment method</label>
+                    <select id="metaPayment">
+                        <option value="CASH">CASH</option>
+                        <option value="CARD">CARD</option>
+                        <option value="TRANSFER">TRANSFER</option>
+                        <option value="POS">POS</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Items</legend>
+                <table class="items-form-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Rate (₦)</th>
+                            <th>Amount</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemsBody"></tbody>
+                </table>
+                <button type="button" class="btn add-item-btn" id="addItemBtn">+ Add item</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Payment Summary</legend>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="vatPercent">VAT (%)</label>
+                        <input type="number" id="vatPercent" min="0" step="0.1" value="0">
+                    </div>
+                    <div class="field">
+                        <label for="tendered">Amount tendered (₦)</label>
+                        <input type="number" id="tendered" min="0" step="0.01" value="216800">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Footer</legend>
+                <div class="field">
+                    <label for="footerThankyou">Thank-you message</label>
+                    <input type="text" id="footerThankyou" value="Thank you for your visit!">
+                </div>
+                <div class="field">
+                    <label for="footerNote">Sub note</label>
+                    <input type="text" id="footerNote" value="Please come again">
+                </div>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="footerPoweredBy1">Footer line 1</label>
+                        <input type="text" id="footerPoweredBy1" value="Technology Partner Delaclique Designs">
+                    </div>
+                    <div class="field">
+                        <label for="footerPoweredBy2">Footer line 2</label>
+                        <input type="text" id="footerPoweredBy2" value="www.delacliquedesigns.com">
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="print-btn-wrap">
+                <button type="button" class="btn btn-primary btn-block" id="printBtn">Print / Save as PDF</button>
+            </div>
+        </div>
+
+        <div class="preview-panel">
+            <p class="preview-hint">Live preview</p>
+            <div class="receipt-paper" id="receiptPaper"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,477 @@
+:root {
+    --bg: #f0f1f4;
+    --panel-bg: #ffffff;
+    --border: #dcdfe4;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --accent: #15803d;
+    --danger: #dc2626;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+.app {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    flex-wrap: wrap;
+}
+
+.app-title {
+    font-size: 18px;
+    margin: 0 0 16px 0;
+}
+
+.form-panel {
+    flex: 1 1 420px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+fieldset {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin: 0 0 16px 0;
+    padding: 12px 14px 14px 14px;
+}
+
+legend {
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--muted);
+    padding: 0 6px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 10px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.field input,
+.field select {
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fff;
+    width: 100%;
+}
+
+.field-row {
+    display: flex;
+    gap: 10px;
+}
+
+.field-row .field {
+    flex: 1;
+    min-width: 0;
+}
+
+.items-form-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.items-form-table th {
+    text-align: left;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 0 4px 6px 4px;
+}
+
+.items-form-table td {
+    padding: 3px 4px;
+    vertical-align: middle;
+}
+
+.items-form-table input {
+    width: 100%;
+    padding: 6px 7px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: inherit;
+}
+
+.items-form-table .qty-input,
+.items-form-table .rate-input {
+    text-align: right;
+}
+
+.items-form-table .amount-cell {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    font-size: 12px;
+    padding-right: 4px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    padding: 4px 6px;
+}
+
+.add-item-btn {
+    margin-top: 8px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn {
+    border: 1px solid var(--border);
+    background: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    padding: 11px 14px;
+    font-size: 14px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.print-btn-wrap {
+    position: sticky;
+    bottom: 0;
+}
+
+.preview-panel {
+    flex: 0 0 360px;
+    position: sticky;
+    top: 24px;
+}
+
+.preview-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 10px 0;
+}
+
+/* ---------- Receipt paper (POS look) ---------- */
+
+.receipt-paper {
+    font-family: 'Courier New', Courier, monospace;
+    color: #000;
+    max-width: 340px;
+    margin: 0 auto 60px auto;
+    padding: 32px 10px 14px 10px;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+.receipt-paper table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.receipt-paper header {
+    width: 100%;
+    text-align: center;
+}
+
+.receipt-paper #logo {
+    width: 55%;
+    display: block;
+    margin: 0 auto 4px auto;
+}
+
+.receipt-paper .store-name {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 2px 0;
+}
+
+.receipt-paper .store-info {
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.receipt-paper .center-align {
+    text-align: center;
+}
+
+.receipt-paper .bill-details td {
+    font-size: 11px;
+}
+
+.receipt-paper .receipt {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.receipt-paper .dashed-rule {
+    border: none;
+    border-top: 1px dashed #000;
+    margin: 6px 0;
+}
+
+.receipt-paper .items .heading {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px dashed black;
+    border-bottom: 1px dashed black;
+    padding: 3px 0;
+    vertical-align: middle;
+}
+
+.receipt-paper .items thead {
+    text-align: center;
+}
+
+.receipt-paper .items thead tr th:first-child,
+.receipt-paper .items tbody tr td:first-child {
+    width: 44%;
+    min-width: 44%;
+    max-width: 44%;
+    word-break: break-word;
+    text-align: left;
+}
+
+.receipt-paper .items td {
+    font-size: 11.5px;
+    text-align: right;
+    vertical-align: bottom;
+    padding-top: 3px;
+}
+
+.receipt-paper .sum-up {
+    text-align: right !important;
+}
+
+.receipt-paper .total {
+    font-size: 13.5px;
+    font-weight: bold;
+    border-top: 1px dashed black !important;
+    border-bottom: 3px double black !important;
+}
+
+.receipt-paper .total.text,
+.receipt-paper .total.price {
+    text-align: right;
+}
+
+.receipt-paper .line {
+    border-top: 1px dashed black !important;
+}
+
+.receipt-paper .heading.rate {
+    width: 20%;
+}
+
+.receipt-paper .heading.amount {
+    width: 25%;
+}
+
+.receipt-paper .heading.qty {
+    width: 6%;
+}
+
+.receipt-paper p {
+    padding: 1px;
+    margin: 0;
+}
+
+.receipt-paper section,
+.receipt-paper footer {
+    font-size: 11px;
+}
+
+.receipt-paper .barcode-wrap {
+    text-align: center;
+    margin: 6px 0;
+}
+
+.receipt-paper .barcode-svg {
+    width: 80%;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+}
+
+.receipt-paper .barcode-number {
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 2px;
+}
+
+.receipt-paper .thankyou {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.receipt-paper .powered-by {
+    text-align: center;
+    font-size: 9px;
+    color: #333;
+}
+
+/* ---------- Compact (dot matrix) template ---------- */
+
+.receipt-paper.template-compact {
+    font-family: 'Doto', 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: left;
+}
+
+.receipt-paper.template-compact #logo {
+    margin: 0 0 4px 0;
+}
+
+.receipt-paper.template-compact .compact-store-name {
+    font-size: 18px;
+    font-weight: 900;
+    margin: 0 0 2px 0;
+}
+
+.receipt-paper.template-compact .compact-address {
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin: 0;
+}
+
+.receipt-paper.template-compact .dashed-rule {
+    border-top: 2px dashed #000;
+    margin: 10px 0;
+}
+
+.receipt-paper.template-compact .compact-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 3px 0;
+}
+
+.receipt-paper.template-compact .compact-row span:first-child {
+    text-transform: uppercase;
+}
+
+.receipt-paper.template-compact .compact-row span:last-child {
+    white-space: nowrap;
+}
+
+.receipt-paper.template-compact .compact-total {
+    font-weight: 900;
+    font-size: 17px;
+}
+
+.receipt-paper.template-compact .barcode-wrap {
+    text-align: left;
+    margin: 10px 0;
+}
+
+.receipt-paper.template-compact .barcode-svg {
+    margin: 0;
+}
+
+.receipt-paper.template-compact .compact-footer {
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-top: 4px;
+}
+
+.receipt-paper.template-compact .compact-footer p {
+    margin: 2px 0;
+}
+
+/* ---------- Print: receipt only ---------- */
+
+@media print {
+    html, body {
+        width: 3.15in;
+        background: #fff;
+    }
+
+    .app {
+        display: block;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-panel,
+    .preview-hint {
+        display: none !important;
+    }
+
+    .preview-panel {
+        position: static;
+        flex: none;
+    }
+
+    .receipt-paper {
+        max-width: none;
+        width: 3.15in;
+        box-shadow: none;
+        margin: 0;
+        padding: 22px 8px 50px 8px;
+    }
+
+    @page {
+        size: 3.15in auto;
+        margin: 0;
+    }
+}
+
+@media (max-width: 780px) {
+    .preview-panel {
+        position: static;
+        flex-basis: 100%;
+    }
+}
